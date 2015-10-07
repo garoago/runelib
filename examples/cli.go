@@ -14,7 +14,7 @@ func main() {
 
 	words := os.Args[1:]
 	saved := make(chan bool)
-	runeIndex := runefinder.GetIndex(saved)
+	runeIndex := runelib.GetIndex(saved)
 	count := 0
 	format := "U+%04X  %c \t%s\n"
 
