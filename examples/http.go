@@ -15,9 +15,9 @@ func main() {
 		fmt.Fprintf(w, "Hellow, %q", html.EscapeString(r.URL.Path))
 	})
 
-	http.HandleFunc("/search/", func(w http.ResponseWriter, r *http.Request) {
-		search := strings.SplitAfter(html.EscapeString(r.URL.Path), "/search/")[1]
-		words := strings.Split(search, " ")
+	http.HandleFunc("/search", func(w http.ResponseWriter, r *http.Request) {
+		search := r.URL.Query()
+		words := strings.Split(search.Get("q"), " ")
 		saved := make(chan bool)
 		runeIndex := runelib.GetIndex(saved)
 		count := 0
